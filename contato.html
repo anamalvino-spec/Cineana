@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contato — CineVitrine 🎬</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --preto: #0a0a0a;
+      --vermelho: #c0392b;
+      --dourado: #f0c040;
+      --cinza-escuro: #1a1a1a;
+      --cinza-medio: #2c2c2c;
+      --branco: #f5f5f0;
+      --texto-suave: #aaa;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--preto);
+      color: var(--branco);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: var(--cinza-escuro);
+      border-bottom: 2px solid var(--vermelho);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--dourado);
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      color: var(--branco);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: color 0.25s;
+    }
+
+    nav a:hover { color: var(--dourado); }
+    nav a.ativo  { color: var(--vermelho); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      background: radial-gradient(ellipse at 50% 0%, #1a0a0a 0%, var(--preto) 70%);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--dourado);
+      letter-spacing: 3px;
+    }
+
+    .hero p {
+      margin-top: 0.8rem;
+      color: var(--texto-suave);
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    .divisor {
+      width: 80px;
+      height: 3px;
+      background: var(--vermelho);
+      margin: 1.4rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── CONTAINER DO FORMULÁRIO ── */
+    .contato-wrapper {
+      max-width: 680px;
+      margin: 3rem auto 4rem;
+      padding: 0 2rem;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    /* ── CARD DO FORMULÁRIO ── */
+    .form-card {
+      background: var(--cinza-escuro);
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 2.5rem 2.5rem 2rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    .form-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--dourado);
+      margin-bottom: 0.3rem;
+    }
+
+    .form-card p.desc {
+      color: var(--texto-suave);
+      font-size: 0.88rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── CAMPOS ── */
+    .campo {
+      margin-bottom: 1.4rem;
+    }
+
+    .campo label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--texto-suave);
+      margin-bottom: 0.5rem;
+    }
+
+    .campo input,
+    .campo textarea {
+      width: 100%;
+      background: var(--cinza-medio);
+      border: 1px solid #3a3a3a;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+      color: var(--branco);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .campo input:focus,
+    .campo textarea:focus {
+      border-color: var(--dourado);
+      box-shadow: 0 0 0 3px rgba(240,192,64,0.15);
+    }
+
+    .campo textarea {
+      height: 140px;
+      resize: vertical;
+    }
+
+    /* ── BOTÃO ENVIAR ── */
+    .btn-enviar {
+      display: block;
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--vermelho);
+      color: var(--branco);
+      border: none;
+      border-radius: 6px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 1.8rem;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .btn-enviar:hover {
+      background: #a93226;
+      transform: translateY(-2px);
+    }
+
+    /* ── MENSAGEM DE SUCESSO ── */
+    .msg-sucesso {
+      display: none;
+      margin-top: 1.2rem;
+      padding: 1rem 1.2rem;
+      background: rgba(240,192,64,0.12);
+      border: 1px solid var(--dourado);
+      border-radius: 6px;
+      color: var(--dourado);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    /* ── INFO DE CONTATO ── */
+    .info-contato {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .info-item {
+      flex: 1;
+      min-width: 180px;
+      background: var(--cinza-medio);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      border-left: 3px solid var(--vermelho);
+    }
+
+    .info-item span.icon { font-size: 1.3rem; }
+    .info-item p { font-size: 0.85rem; color: var(--texto-suave); margin-top: 0.3rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #2a2a2a;
+      color: var(--texto-suave);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    footer span { color: var(--vermelho); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem 1.5rem; }
+      nav a  { margin-left: 1rem; font-size: 0.8rem; }
+      .form-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">🎬 Cineana</div>
+    <nav>
+      <a href="index.html">Filmes</a>
+      <a href="contato.html" class="ativo">Contato</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Entre em Contato</h1>
+    <p>Quer trocar uma ideia sobre cinema? Manda mensagem!</p>
+    <div class="divisor"></div>
+  </div>
+
+  <div class="contato-wrapper">
+
+    <div class="form-card">
+      <h2>Envie sua Mensagem</h2>
+      <p class="desc">Respondo todos os contatos sobre filmes, séries e recomendações 🎥</p>
+
+      <div class="campo">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Seu nome completo" />
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="seuemail@exemplo.com" />
+      </div>
+
+      <div class="campo">
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" placeholder="Escreva sua mensagem aqui..."></textarea>
+      </div>
+
+      <button class="btn-enviar" onclick="enviarMensagem()">🎬 Enviar Mensagem</button>
+
+      <div class="msg-sucesso" id="msgSucesso">
+        ✅ Mensagem enviada com sucesso! Obrigado pelo contato.
+      </div>
+    </div>
+
+    <!-- Info extra -->
+    <div class="info-contato">
+      <div class="info-item">
+        <span class="icon">🎞️</span>
+        <p>Amante de filmes de todos os gêneros</p>
+      </div>
+      <div class="info-item">
+        <span class="icon">📍</span>
+        <p>Brasil · Escola 1º B</p>
+      </div>
+      <div class="info-item">
+        <span class="icon">⭐</span>
+        <p>Sempre aberto a recomendações!</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Feito com <span>❤️</span> por um cinéfilo apaixonado &nbsp;·&nbsp; 1º B &nbsp;·&nbsp; 2024</p>
+  </footer>
+
+  <script>
+    // Função JavaScript: validar e "enviar" o formulário
+    function enviarMensagem() {
+      const nome     = document.getElementById('nome').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const mensagem = document.getElementById('mensagem').value.trim();
+      const msgSucesso = document.getElementById('msgSucesso');
+
+      // Validação simples
+      if (!nome || !email || !mensagem) {
+        alert('⚠️ Por favor, preencha todos os campos antes de enviar!');
+        return;
+      }
+
+      // Verifica se o e-mail tem formato válido
+      if (!email.includes('@') || !email.includes('.')) {
+        alert('⚠️ Digite um e-mail válido!');
+        return;
+      }
+
+      // Exibe mensagem de sucesso
+      msgSucesso.style.display = 'block';
+
+      // Limpa o formulário
+      document.getElementById('nome').value     = '';
+      document.getElementById('email').value    = '';
+      document.getElementById('mensagem').value = '';
+
+      // Esconde a mensagem após 5 segundos
+      setTimeout(() => { msgSucesso.style.display = 'none'; }, 5000);
+    }
+  </script>
+
+</body>
+</html>

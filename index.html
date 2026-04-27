@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CineAna 🎬</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --preto: #0a0a0a;
+      --vermelho: #c0392b;
+      --dourado: #f0c040;
+      --cinza-escuro: #1a1a1a;
+      --cinza-medio: #2c2c2c;
+      --branco: #f5f5f0;
+      --texto-suave: #aaa;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--preto);
+      color: var(--branco);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: var(--cinza-escuro);
+      border-bottom: 2px solid var(--vermelho);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--dourado);
+      letter-spacing: 2px;
+      text-shadow: 0 0 18px rgba(240,192,64,0.35);
+    }
+
+    nav a {
+      color: var(--branco);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: color 0.25s;
+    }
+
+    nav a:hover { color: var(--dourado); }
+    nav a.ativo  { color: var(--vermelho); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 3.5rem;
+      background: radial-gradient(ellipse at 50% 0%, #3a0a08 0%, var(--preto) 70%);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900;
+      color: var(--dourado);
+      letter-spacing: 3px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      color: var(--texto-suave);
+      font-size: 1.05rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    .divisor {
+      width: 80px;
+      height: 3px;
+      background: var(--vermelho);
+      margin: 1.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    .btn-anuncio {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      background: var(--vermelho);
+      color: var(--branco);
+      border: none;
+      border-radius: 4px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .btn-anuncio:hover {
+      background: #a93226;
+      transform: translateY(-2px);
+    }
+
+    /* ── SECTION ── */
+    section {
+      padding: 3rem 3rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--dourado);
+      margin-bottom: 0.3rem;
+    }
+
+    section .subtitulo {
+      color: var(--texto-suave);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── GRID ── */
+    .vitrine {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--cinza-medio);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #333;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(192,57,43,0.35);
+    }
+
+    .card img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-info {
+      padding: 1rem 1.2rem 1.4rem;
+    }
+
+    .card-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--branco);
+      margin-bottom: 0.3rem;
+    }
+
+    .card-info .ano {
+      font-size: 0.8rem;
+      color: var(--dourado);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .card-info .genero {
+      display: inline-block;
+      margin-top: 0.6rem;
+      padding: 0.2rem 0.7rem;
+      background: var(--vermelho);
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .card-info p.sinopse {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--texto-suave);
+      line-height: 1.6;
+    }
+
+    .badge-fav {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--dourado);
+      color: var(--preto);
+      font-size: 0.7rem;
+      font-weight: 900;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #2a2a2a;
+      color: var(--texto-suave);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    footer span { color: var(--vermelho); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header  { padding: 1rem 1.5rem; }
+      nav a   { margin-left: 1rem; font-size: 0.8rem; }
+      section { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">🎬 Cine</div>
+    <nav>
+      <a href="index.html" class="ativo">Filmes</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Meus Filmes Favoritos</h1>
+    <p>Uma curadoria pessoal das melhores experiências do cinema</p>
+    <div class="divisor"></div>
+    <button class="btn-anuncio" onclick="exibirDica()">🍿 Dica do Dia</button>
+  </div>
+
+  <section>
+    <h2>Em Cartaz na Minha Lista</h2>
+    <p class="subtitulo">✦ Seleção Especial ✦</p>
+
+    <div class="vitrine">
+
+      <div class="card">
+        <div class="badge-fav">⭐ Favorito</div>
+        <img src="https://upload.wikimedia.org/wikipedia/pt/e/e5/O_Rei_Le%C3%A3o_filme_cartaz.jpg"
+             alt="O Rei Leão"
+             onerror="this.style.background='#1a1a1a';this.style.height='340px'" />
+        <div class="card-info">
+          <div class="ano">1994</div>
+          <h3>O Rei Leão</h3>
+          <span class="genero">Animação</span>
+          <p class="sinopse">Simba, um jovem leão, precisa enfrentar seu passado e seu destino para se tornar o verdadeiro rei.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/pt/4/4e/Poster-de-Interestelar.jpg"
+             alt="Interestelar"
+             onerror="this.style.background='#1a1a1a';this.style.height='340px'" />
+        <div class="card-info">
+          <div class="ano">2014</div>
+          <h3>Interestelar</h3>
+          <span class="genero">Ficção Científica</span>
+          <p class="sinopse">Exploradores viajam por um buraco de minhoca no espaço em busca de um novo lar para a humanidade.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/pt/3/3b/Spider-Man_Across_the_Spider-Verse_poster.jpg"
+             alt="Aranhaverso 2"
+             onerror="this.style.background='#1a1a1a';this.style.height='340px'" />
+        <div class="card-info">
+          <div class="ano">2023</div>
+          <h3>Aranhaverso 2</h3>
+          <span class="genero">Animação · Ação</span>
+          <p class="sinopse">Miles Morales viaja pelo multiverso e descobre que ser herói pode custar muito mais do que imagina.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/7/7e/Oppenheimer_%28filme%29.jpg/220px-Oppenheimer_%28filme%29.jpg"
+             alt="Oppenheimer"
+             onerror="this.style.background='#1a1a1a';this.style.height='340px'" />
+        <div class="card-info">
+          <div class="ano">2023</div>
+          <h3>Oppenheimer</h3>
+          <span class="genero">Drama · Histórico</span>
+          <p class="sinopse">A história do físico que liderou o desenvolvimento da bomba atômica durante a Segunda Guerra Mundial.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/pt/a/a5/Guardians_of_the_Galaxy_Vol_3_poster.jpg"
+             alt="Guardiões Vol. 3"
+             onerror="this.style.background='#1a1a1a';this.style.height='340px'" />
+        <div class="card-info">
+          <div class="ano">2023</div>
+          <h3>Guardiões Vol. 3</h3>
+          <span class="genero">Ação · Aventura</span>
+          <p class="sinopse">Os Guardiões embarcam em uma missão para proteger Rocket e desvendar seu passado misterioso.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>Feito com <span>❤️</span> por um cinéfilo apaixonado &nbsp;·&nbsp; 1º B &nbsp;·&nbsp; 2024</p>
+  </footer>
+
+  <script>
+    // Função JavaScript: Dica do Dia (requisito do projeto)
+    function exibirDica() {
+      const dicas = [
+        "🍿 Dica: Desligue as luzes e use fones para uma experiência de verdade!",
+        "🎬 Você sabia? 'Interestelar' usou buracos negros simulados por físicos reais!",
+        "⭐ Dica: Assista no idioma original com legenda para sentir melhor a atuação!",
+        "🌌 Dica: Explore gêneros diferentes — você pode se surpreender!"
+      ];
+      const sorteio = dicas[Math.floor(Math.random() * dicas.length)];
+      alert(sorteio);
+    }
+  </script>
+
+</body>
+</html>
